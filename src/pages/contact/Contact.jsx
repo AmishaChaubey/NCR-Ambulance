@@ -366,7 +366,7 @@ export default function ContactPage() {
 
       {/* Map Section */}
       <div className="px-4 sm:px-6 lg:px-8">
-        <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-center text-[#0f3b66] mb-3 sm:mb-4 md:mb-5 font-serif">Find<span className="text-[#1e5a94]"> Our Facility</span></h2>
+        <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-center text-gray-900  mb-3 sm:mb-4 md:mb-5 font-serif">Find<span className="text-[#0f3b66]"> Our Facility</span></h2>
         <p className="mb-6 sm:mb-8 md:mb-10 text-center text-gray-500 text-sm sm:text-base">
           Visit our facility for professional funeral support and dead body freezer services.
         </p>

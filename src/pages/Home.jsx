@@ -48,40 +48,36 @@ export default function FuneralHomePage() {
     return () => clearInterval(interval);
   }, []);
 
-    useEffect(() => {
-      window.scrollTo(0, 0);
-    }, []);
-
-
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   const services = [
+    {
+      icon: <Users className="w-12 h-12" />,
+      title: "Ambulance",
+      description:
+        "Fast and reliable ambulance support to assist families in critical moments",
+      color: "bg-[#0f3b66]",
+      link: "/services/ambulance-services",
+    },
+
     {
       icon: <Snowflake className="w-12 h-12" />,
       title: "Dead Body Freezer Box",
       description:
         "Advanced preservation technology ensuring dignified care with temperature-controlled units available for rent.",
       color: "bg-[#0f3b66]",
+      link: "/services/dead-body-freezer-box",
     },
+
     {
       icon: <Heart className="w-12 h-12" />,
       title: "Funeral Services",
       description:
         "Comprehensive funeral arrangements tailored to honor your loved one's memory with compassion and respect.",
       color: "bg-[#0f3b66]",
-    },
-    {
-      icon: <Users className="w-12 h-12" />,
-      title: "Grief Support",
-      description:
-        "Professional counseling and support services to help families navigate through difficult times.",
-      color: "bg-[#0f3b66]",
-    },
-    {
-      icon: <Shield className="w-12 h-12" />,
-      title: "Memorial Services",
-      description:
-        "Personalized memorial ceremonies that celebrate life and provide closure for family and friends.",
-      color: "bg-[#0f3b66]",
+      link: "/services/funeral-services",
     },
   ];
 
@@ -156,7 +152,7 @@ export default function FuneralHomePage() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <section
           id="section-about"
-          className={`py-16 sm:py-20 md:py-24 lg:py-32 transition-all duration-1000 ${
+          className={`py-16 sm:py-20 md:py-24 lg:py-32 pb-8 sm:pb-12 md:pb-16 lg:pb-20 transition-all duration-1000 ${
             isVisible["section-about"]
               ? "opacity-100 translate-y-0"
               : "opacity-0 translate-y-10"
@@ -238,7 +234,7 @@ export default function FuneralHomePage() {
         {/* Services Section */}
         <section
           id="section-services"
-          className={`py-16 sm:py-20 md:py-24 lg:py-32 transition-all duration-1000 ${
+          className={`pt-8 sm:pt-12 md:pt-16 lg:pt-20 pb-16 sm:pb-20 md:pb-24 lg:pb-32 transition-all duration-1000 ${
             isVisible["section-services"]
               ? "opacity-100 translate-y-0"
               : "opacity-0 translate-y-10"
@@ -251,7 +247,8 @@ export default function FuneralHomePage() {
               </div>
             </div>
             <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-4 sm:mb-6 font-serif">
-              Comprehensive <span className="bg-clip-text text-[#0f3b66]">Services</span>
+              Comprehensive{" "}
+              <span className="bg-clip-text text-[#0f3b66]">Services</span>
             </h2>
             <p className="text-base sm:text-lg text-gray-600 max-w-2xl mx-auto px-4">
               Comprehensive funeral and preservation services designed to meet
@@ -259,11 +256,11 @@ export default function FuneralHomePage() {
             </p>
           </div>
 
-          <div className="grid xs:grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
+          <div className="grid xs:grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 justify-items-center">
             {services.map((service, index) => (
               <div
                 key={index}
-                className="bg-white p-6 sm:p-8 rounded-xl sm:rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 group overflow-hidden relative"
+                className="bg-white p-6 sm:p-8 rounded-xl sm:rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 group overflow-hidden relative w-full max-w-md"
               >
                 <div
                   className={`absolute top-0 right-0 w-24 h-24 sm:w-32 sm:h-32 bg-gradient-to-br ${service.color} opacity-10 rounded-full -mr-12 -mt-12 sm:-mr-16 sm:-mt-16 group-hover:scale-150 transition-transform duration-500`}
@@ -279,10 +276,13 @@ export default function FuneralHomePage() {
                 <p className="text-gray-600 leading-relaxed text-sm sm:text-base">
                   {service.description}
                 </p>
-                <div className="mt-4 sm:mt-6 flex items-center text-[#0f3b66] font-medium group-hover:text-blue-700 transition-colors">
-                  Learn more{" "}
+                <Link
+                  to={service.link}
+                  className="mt-4 sm:mt-6 flex items-center text-[#0f3b66] font-medium group-hover:text-blue-700 transition-colors"
+                >
+                  Learn more
                   <ArrowRight className="w-4 h-4 ml-2 transform group-hover:translate-x-1 transition-transform" />
-                </div>
+                </Link>
               </div>
             ))}
           </div>
@@ -290,7 +290,7 @@ export default function FuneralHomePage() {
       </div>
 
       {/* Why Choose Us Section */}
-      {/* <ITSolutionsSection /> */}
+      <ITSolutionsSection />
 
       {/* CTA Section */}
       <section

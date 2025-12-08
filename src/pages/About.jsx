@@ -123,10 +123,10 @@ const AboutPage = () => {
         <div className="max-w-7xl mx-auto">
           <AnimatedSection className="text-center mb-12 sm:mb-16">
             <motion.h2 
-              className="text-3xl sm:text-4xl md:text-5xl font-bold text-sapphire-blue mb-4 text-[#0f3b66] font-serif"
+              className="text-3xl sm:text-4xl md:text-5xl font-bold text-sapphire-blue text-gray-900 mb-4 font-serif"
               variants={fadeInUpVariants}
             >
-              Our Comprehensive Services
+              Our Comprehensive <span className=' text-[#0f3b66] '> Services</span>
             </motion.h2>
             <motion.div 
               className="w-16 sm:w-24 h-1 bg-sapphire-accent mx-auto rounded-full mb-6"
