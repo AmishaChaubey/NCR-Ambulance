@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { useInView } from 'framer-motion';
-import { useRef } from 'react';
+import { useRef,useEffect } from 'react';
 import { Home, Heart, Shield, Phone, Clock, CheckCircle, Target, Award, HandHeart } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import ProcessSection from './Process';
@@ -36,6 +36,10 @@ const staggerContainer = {
 const AnimatedSection = ({ children, className = "" }) => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
+
+    useEffect(() => {
+      window.scrollTo(0, 0);
+    }, []);
 
   return (
     <motion.div

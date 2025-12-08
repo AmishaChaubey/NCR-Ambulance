@@ -48,6 +48,12 @@ export default function FuneralHomePage() {
     return () => clearInterval(interval);
   }, []);
 
+    useEffect(() => {
+      window.scrollTo(0, 0);
+    }, []);
+
+
+
   const services = [
     {
       icon: <Snowflake className="w-12 h-12" />,
