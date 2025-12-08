@@ -17,12 +17,9 @@ import {
 } from "lucide-react";
 import { Link } from "react-router-dom";
 
-
 export default function FuneralHomePage() {
   const [isVisible, setIsVisible] = useState({});
   const [activeTestimonial, setActiveTestimonial] = useState(0);
-  const [scrollY, setScrollY] = useState(0);
-  
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -51,32 +48,20 @@ export default function FuneralHomePage() {
     return () => clearInterval(interval);
   }, []);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrollY(window.scrollY);
-    };
-
-    window.addEventListener("scroll", handleScroll);
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
-
   const services = [
     {
       icon: <Snowflake className="w-12 h-12" />,
       title: "Dead Body Freezer Box",
       description:
         "Advanced preservation technology ensuring dignified care with temperature-controlled units available for rent.",
-       color: "bg-[#0f3b66]",
+      color: "bg-[#0f3b66]",
     },
     {
       icon: <Heart className="w-12 h-12" />,
       title: "Funeral Services",
       description:
         "Comprehensive funeral arrangements tailored to honor your loved one's memory with compassion and respect.",
-      color: "bg-[#0f3b66]"
+      color: "bg-[#0f3b66]",
     },
     {
       icon: <Users className="w-12 h-12" />,
@@ -90,7 +75,7 @@ export default function FuneralHomePage() {
       title: "Memorial Services",
       description:
         "Personalized memorial ceremonies that celebrate life and provide closure for family and friends.",
-    color: "bg-[#0f3b66]",
+      color: "bg-[#0f3b66]",
     },
   ];
 
@@ -119,9 +104,10 @@ export default function FuneralHomePage() {
   ];
 
   return (
-    <div className="min-h-screen bg-gray-50 overflow-x-hidden">
-      {/* Hero Banner Section with Image */}
-      <section className="relative h-screen flex items-center justify-center overflow-hidden mt-5">
+    // Changed from overflow-x-hidden to overflow-x-auto to allow horizontal scrolling if needed
+    <div className="bg-gray-50 min-h-screen">
+      {/* Hero Section */}
+      <section className="relative h-screen flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0">
           <div className="absolute inset-0 bg-[url('/banner/banner1.png')] bg-cover bg-center"></div>
           <div className="absolute inset-0 bg-black opacity-50"></div>
@@ -144,11 +130,12 @@ export default function FuneralHomePage() {
             available 24/7
           </p>
           <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center px-4">
-            <Link to='/contact'><button className="bg-white hover:bg-gray-100 text-gray-900 px-6 sm:px-8 py-3 sm:py-4 rounded-full font-semibold text-base sm:text-lg transition-all duration-300 transform hover:scale-105 shadow-xl flex items-center justify-center gap-2 w-full sm:w-auto">
-              <Phone className="w-5 h-5" />
-              Contact Us 
-            </button>
-       </Link>
+            <Link to="/contact">
+              <button className="bg-white hover:bg-gray-100 text-gray-900 px-6 sm:px-8 py-3 sm:py-4 rounded-full font-semibold text-base sm:text-lg transition-all duration-300 transform hover:scale-105 shadow-xl flex items-center justify-center gap-2 w-full sm:w-auto">
+                <Phone className="w-5 h-5" />
+                Contact Us
+              </button>
+            </Link>
           </div>
         </div>
 
@@ -159,31 +146,28 @@ export default function FuneralHomePage() {
         </div>
       </section>
 
-      {/* About Section - Updated */}
-      <div className="max-w-7xl mx-auto">
-      <section
-        id="section-about"
-        className={`py-16 sm:py-20 md:py-24 lg:py-32 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-gray-50 to-white transition-all duration-1000 ${
-          isVisible["section-about"]
-            ? "opacity-100 translate-y-0"
-            : "opacity-0 translate-y-10"
-        }`}
-      >
-        <div className="max-w-7xl mx-auto">
-          <div className="grid md:grid-cols-2 gap-8 lg:gap-12 xl:gap-16 items-center">
-            {/* Content Side */}
+      {/* About Section */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <section
+          id="section-about"
+          className={`py-16 sm:py-20 md:py-24 lg:py-32 transition-all duration-1000 ${
+            isVisible["section-about"]
+              ? "opacity-100 translate-y-0"
+              : "opacity-0 translate-y-10"
+          }`}
+        >
+          <div className="grid md:grid-cols-2 gap-8 lg:gap-12 xl:gap-16 items-center relative overflow-hidden">
+            {/* Content */}
             <div className="space-y-4 sm:space-y-6 lg:space-y-8">
               <div className="inline-block">
                 <div className="bg-blue-100 text-[#0f3b66] rounded-full px-4 sm:px-5 py-2 text-xs sm:text-sm font-semibold shadow-sm">
                   About Us
                 </div>
               </div>
-              
               <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 leading-tight">
                 NCR Funeral Services & Dead Body{" "}
                 <span className="text-[#0f3b66]">Freezer Box on Rent</span>
               </h2>
-              
               <div className="space-y-3 sm:space-y-4 text-sm sm:text-base lg:text-lg text-gray-600 leading-relaxed">
                 <p>
                   We provide 24×7 funeral support services and dead body freezer
@@ -202,24 +186,19 @@ export default function FuneralHomePage() {
                 </p>
               </div>
 
-              {/* Stats Cards */}
+              {/* Stats */}
               <div className="grid grid-cols-3 gap-2 sm:gap-4 lg:gap-6 pt-4 sm:pt-6">
                 {[
                   { title: "5+ Years", subtitle: "Experience" },
                   { title: "Licensed &", subtitle: "Certified" },
-                  { title: "200+", subtitle: "Families Served" }
+                  { title: "200+", subtitle: "Families Served" },
                 ].map((stat, index) => (
                   <div
                     key={index}
                     className="group relative bg-white rounded-xl sm:rounded-2xl p-3 sm:p-4 lg:p-6 border border-gray-200 shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 overflow-hidden"
                   >
-                    {/* Background decoration */}
                     <div className="absolute top-0 right-0 w-16 h-16 sm:w-20 sm:h-20 bg-blue-50 rounded-full -mr-8 -mt-8 sm:-mr-10 sm:-mt-10 group-hover:scale-150 transition-transform duration-500"></div>
-                    
-                    {/* Glow effect */}
                     <div className="absolute inset-0 bg-gradient-to-br from-[#0f3b66]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                    
-                    {/* Content */}
                     <div className="relative z-10">
                       <h3 className="text-base sm:text-lg lg:text-xl xl:text-2xl font-bold text-[#0f3b66] mb-1 group-hover:text-blue-700 transition-colors">
                         {stat.title}
@@ -228,45 +207,37 @@ export default function FuneralHomePage() {
                         {stat.subtitle}
                       </p>
                     </div>
-
-                    {/* Bottom accent */}
                     <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-[#0f3b66] to-blue-400 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
                   </div>
                 ))}
               </div>
             </div>
 
-            {/* Image Side */}
-            <div className="relative order-first md:order-last">
+            {/* Image */}
+            <div className="relative">
               <div className="relative aspect-square rounded-2xl sm:rounded-3xl shadow-2xl overflow-hidden transform hover:scale-[1.02] transition-transform duration-500">
-                <img 
-                  src="/about2.jpg" 
+                <img
+                  src="/about2.jpg"
                   alt="Funeral Services"
                   className="w-full h-full object-cover"
                 />
-                
-                {/* Overlay gradient */}
                 <div className="absolute inset-0 bg-gradient-to-t from-[#0f3b66]/20 via-transparent to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300"></div>
               </div>
-
-              {/* Decorative elements */}
               <div className="absolute -top-4 -right-4 w-16 h-16 sm:w-24 sm:h-24 bg-blue-100 rounded-full blur-2xl opacity-50 -z-10"></div>
               <div className="absolute -bottom-4 -left-4 w-20 h-20 sm:w-32 sm:h-32 bg-[#0f3b66]/10 rounded-full blur-2xl opacity-50 -z-10"></div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* Services Section */}
-      <section
-        id="section-services"
-        className={`py-16 sm:py-20 md:py-24 lg:py-32 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-gray-50 to-blue-50 transition-all duration-1000 ${
-          isVisible["section-services"]
-            ? "opacity-100 translate-y-0"
-            : "opacity-0 translate-y-10"
-        }`}
-      >
-        <div className="max-w-7xl mx-auto">
+        {/* Services Section */}
+        <section
+          id="section-services"
+          className={`py-16 sm:py-20 md:py-24 lg:py-32 transition-all duration-1000 ${
+            isVisible["section-services"]
+              ? "opacity-100 translate-y-0"
+              : "opacity-0 translate-y-10"
+          }`}
+        >
           <div className="text-center mb-12 sm:mb-16">
             <div className="inline-block">
               <div className="bg-blue-100 text-[#0f3b66] rounded-full px-4 py-1 text-sm font-semibold mb-4 sm:mb-6">
@@ -274,10 +245,7 @@ export default function FuneralHomePage() {
               </div>
             </div>
             <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-4 sm:mb-6 font-serif">
-              Comprehensive{" "}
-              <span className="bg-clip-text text-[#0f3b66]">
-                Services
-              </span>
+              Comprehensive <span className="bg-clip-text text-[#0f3b66]">Services</span>
             </h2>
             <p className="text-base sm:text-lg text-gray-600 max-w-2xl mx-auto px-4">
               Comprehensive funeral and preservation services designed to meet
@@ -290,7 +258,6 @@ export default function FuneralHomePage() {
               <div
                 key={index}
                 className="bg-white p-6 sm:p-8 rounded-xl sm:rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 group overflow-hidden relative"
-                style={{ animationDelay: `${index * 100}ms` }}
               >
                 <div
                   className={`absolute top-0 right-0 w-24 h-24 sm:w-32 sm:h-32 bg-gradient-to-br ${service.color} opacity-10 rounded-full -mr-12 -mt-12 sm:-mr-16 sm:-mt-16 group-hover:scale-150 transition-transform duration-500`}
@@ -313,83 +280,79 @@ export default function FuneralHomePage() {
               </div>
             ))}
           </div>
-        </div>
-      </section>
+        </section>
+      </div>
 
-      {/* Why Choose Us Section with Parallax Effect */}
-      <ITSolutionsSection/>
+      {/* Why Choose Us Section */}
+      {/* <ITSolutionsSection /> */}
 
-      {/* Compact CTA Section with Glassmorphism Effect */}
+      {/* CTA Section */}
       <section
         id="section-cta"
         className={`py-12 px-4 sm:px-6 lg:px-8 relative transition-all duration-1000 ${
           isVisible["section-cta"]
             ? "opacity-100 translate-y-0"
             : "opacity-0 translate-y-10"
-        }`}
+        } overflow-hidden`}
       >
-        {/* Background Image */}
         <div className="absolute inset-0 bg-[url('/c1.jpg')] bg-cover bg-center"></div>
-
-        {/* Content Wrapper — shifted to right */}
-        <div className="relative z-10 max-w-7xl mx-auto">
-          <div className="flex justify-end">
-            <div className="bg-white/40 backdrop-blur-lg rounded-xl sm:rounded-2xl p-4 sm:p-6 lg:p-8 shadow-2xl border border-white/20 max-w-xl lg:max-w-2xl w-full">
-              <div className="flex flex-col lg:flex-row items-center justify-between gap-4 sm:gap-6">
-                <div className="text-center lg:text-left">
-                  <div className="flex items-center gap-3 mb-2">
-                    <Phone className="w-6 h-6 sm:w-8 sm:h-8 text-[#0f3b66]" />
-                    <span className="bg-white/20 backdrop-blur-sm text-[#0f3b66] rounded-full px-3 py-1 text-xs sm:text-sm font-semibold">
-                      Available 24/7
-                    </span>
-                  </div>
-                  <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold text-[#0f3b66] mb-1">
-                    We're Here For You
-                  </h2>
-                  <p className="text-blue-800 text-sm sm:text-base">
-                    Compassionate support when you need it most
-                  </p>
+        <div className="relative z-10 max-w-7xl mx-auto flex justify-end">
+          <div className="bg-white/40 backdrop-blur-lg rounded-xl sm:rounded-2xl p-4 sm:p-6 lg:p-8 shadow-2xl border border-white/20 max-w-xl lg:max-w-2xl w-full">
+            <div className="flex flex-col lg:flex-row items-center justify-between gap-4 sm:gap-6">
+              <div className="text-center lg:text-left">
+                <div className="flex items-center gap-3 mb-2">
+                  <Phone className="w-6 h-6 sm:w-8 sm:h-8 text-[#0f3b66]" />
+                  <span className="bg-white/20 backdrop-blur-sm text-[#0f3b66] rounded-full px-3 py-1 text-xs sm:text-sm font-semibold">
+                    Available 24/7
+                  </span>
                 </div>
-
-                <div className="flex flex-col sm:flex-row gap-3 w-full lg:w-auto">
-               
-                  <a href="tel:+918888888888"><button className="bg-transparent border-2 border-white/50 text-white px-5 py-2 sm:py-3 rounded-full font-semibold hover:bg-white/10 transition-all duration-300 transform hover:scale-105 flex items-center justify-center gap-2 text-sm sm:text-base w-full sm:w-auto">
-                    <Phone  className="w-4 h-4" />
-                    Call Us 
-                  </button></a>
-                </div>
+                <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold text-[#0f3b66] mb-1">
+                  We're Here For You
+                </h2>
+                <p className="text-blue-800 text-sm sm:text-base">
+                  Compassionate support when you need it most
+                </p>
               </div>
 
-              <div className="mt-4 sm:mt-6 pt-4 sm:pt-6 border-t border-white/20 flex flex-wrap justify-center lg:justify-start gap-4 sm:gap-6 text-white text-xs sm:text-sm">
-                <div className="flex items-center gap-2">
-                  <Phone className="w-4 h-4" />
-                  <span>+91 99999999</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <Mail className="w-4 h-4" />
-                  <span>info@funeralservices.com</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <MapPin className="w-4 h-4" />
-                  <span>123 Memorial Ave</span>
-                </div>
+              <div className="flex flex-col sm:flex-row gap-3 w-full lg:w-auto">
+                <a href="tel:+918888888888">
+                  <button className="bg-transparent border-2 border-white/50 text-white px-5 py-2 sm:py-3 rounded-full font-semibold hover:bg-white/10 transition-all duration-300 transform hover:scale-105 flex items-center justify-center gap-2 text-sm sm:text-base w-full sm:w-auto">
+                    <Phone className="w-4 h-4" />
+                    Call Us
+                  </button>
+                </a>
+              </div>
+            </div>
+
+            <div className="mt-4 sm:mt-6 pt-4 sm:pt-6 border-t border-white/20 flex flex-wrap justify-center lg:justify-start gap-4 sm:gap-6 text-white text-xs sm:text-sm">
+              <div className="flex items-center gap-2">
+                <Phone className="w-4 h-4" />
+                <span>+91 99999999</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <Mail className="w-4 h-4" />
+                <span>info@funeralservices.com</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <MapPin className="w-4 h-4" />
+                <span>123 Memorial Ave</span>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Testimonials Section */}
+      {/* Testimonials */}
       <section
         id="section-testimonials"
-        className={`py-16 sm:py-20 md:py-24 lg:py-32 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-gray-50 to-blue-50 transition-all duration-1000 ${
+        className={`py-16 sm:py-20 md:py-24 lg:py-32 transition-all duration-1000 ${
           isVisible["section-testimonials"]
             ? "opacity-100 translate-y-0"
             : "opacity-0 translate-y-10"
         }`}
       >
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-12 sm:mb-16">
+        <div className="max-w-7xl mx-auto text-center">
+          <div className="mb-12 sm:mb-16">
             <div className="inline-block">
               <div className="bg-blue-100 text-[#0f3b66] rounded-full px-4 py-1 text-sm font-semibold mb-4 sm:mb-6">
                 Testimonials
@@ -397,73 +360,67 @@ export default function FuneralHomePage() {
             </div>
             <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-4 sm:mb-6 font-serif">
               What Families{" "}
-              <span className="bg-clip-text text-[#0f3b66]">
-                Say About Us
-              </span>
+              <span className="bg-clip-text text-[#0f3b66]">Say About Us</span>
             </h2>
             <p className="text-base sm:text-lg text-gray-600 max-w-2xl mx-auto px-4">
               Read testimonials from families we've had the privilege to serve
             </p>
           </div>
 
-          <div className="relative">
-            <div className="flex flex-col md:flex-row gap-6 sm:gap-8 items-center">
-              <div className="md:w-1/3 flex justify-center">
-                <div className="relative">
-                  <div className="w-24 h-24 sm:w-32 sm:h-32 rounded-full overflow-hidden border-4 border-white shadow-xl">
-                    <div className="w-full h-full bg-gradient-to-br from-blue-400 to-cyan-400 flex items-center justify-center text-white text-2xl sm:text-3xl lg:text-4xl font-bold">
-                      {testimonials[activeTestimonial].name
-                        .split(" ")
-                        .map((n) => n[0])
-                        .join("")}
-                    </div>
+          <div className="flex flex-col md:flex-row gap-6 sm:gap-8 items-center justify-center">
+            <div className="md:w-1/3 flex justify-center">
+              <div className="relative">
+                <div className="w-24 h-24 sm:w-32 sm:h-32 rounded-full overflow-hidden border-4 border-white shadow-xl">
+                  <div className="w-full h-full bg-[#0f3b66] flex items-center justify-center text-white text-2xl sm:text-3xl lg:text-4xl font-bold">
+                    {testimonials[activeTestimonial].name
+                      .split(" ")
+                      .map((n) => n[0])
+                      .join("")}
                   </div>
                 </div>
               </div>
-              <div className="md:w-2/3">
-                <div className="bg-white p-6 sm:p-8 rounded-xl sm:rounded-2xl shadow-xl">
-                  <div className="flex gap-1 mb-4 sm:mb-6">
-                    {[...Array(testimonials[activeTestimonial].rating)].map(
-                      (_, i) => (
-                        <Star
-                          key={i}
-                          className="w-4 h-4 sm:w-5 sm:h-5 fill-yellow-400 text-yellow-400"
-                        />
-                      )
-                    )}
-                  </div>
-                  <p className="text-gray-600 mb-4 sm:mb-6 italic leading-relaxed text-sm sm:text-base lg:text-lg">
-                    "{testimonials[activeTestimonial].content}"
+            </div>
+            <div className="md:w-2/3">
+              <div className="bg-white p-6 sm:p-8 rounded-xl sm:rounded-2xl shadow-xl">
+                <div className="flex gap-1 mb-4 sm:mb-6">
+                  {[...Array(testimonials[activeTestimonial].rating)].map(
+                    (_, i) => (
+                      <Star
+                        key={i}
+                        className="w-4 h-4 sm:w-5 sm:h-5 fill-yellow-400 text-yellow-400"
+                      />
+                    )
+                  )}
+                </div>
+                <p className="text-gray-600 mb-4 sm:mb-6 italic leading-relaxed text-sm sm:text-base lg:text-lg">
+                  "{testimonials[activeTestimonial].content}"
+                </p>
+                <div className="border-t pt-3 sm:pt-4">
+                  <p className="font-bold text-gray-900 text-base sm:text-lg">
+                    {testimonials[activeTestimonial].name}
                   </p>
-                  <div className="border-t pt-3 sm:pt-4">
-                    <p className="font-bold text-gray-900 text-base sm:text-lg">
-                      {testimonials[activeTestimonial].name}
-                    </p>
-                    <p className="text-xs sm:text-sm text-gray-500">
-                      {testimonials[activeTestimonial].role}
-                    </p>
-                  </div>
+                  <p className="text-xs sm:text-sm text-gray-500">
+                    {testimonials[activeTestimonial].role}
+                  </p>
                 </div>
-                <div className="flex justify-center mt-4 sm:mt-6 gap-2">
-                  {testimonials.map((_, index) => (
-                    <button
-                      key={index}
-                      className={`w-2 h-2 sm:w-3 sm:h-3 rounded-full transition-colors duration-300 ${
-                        index === activeTestimonial
-                          ? "bg-[#0f3b66]"
-                          : "bg-gray-300"
-                      }`}
-                      onClick={() => setActiveTestimonial(index)}
-                    ></button>
-                  ))}
-                </div>
+              </div>
+              <div className="flex justify-center mt-4 sm:mt-6 gap-2">
+                {testimonials.map((_, index) => (
+                  <button
+                    key={index}
+                    className={`w-2 h-2 sm:w-3 sm:h-3 rounded-full transition-colors duration-300 ${
+                      index === activeTestimonial
+                        ? "bg-[#0f3b66]"
+                        : "bg-gray-300"
+                    }`}
+                    onClick={() => setActiveTestimonial(index)}
+                  ></button>
+                ))}
               </div>
             </div>
           </div>
         </div>
       </section>
-      </div>
-
     </div>
   );
 }

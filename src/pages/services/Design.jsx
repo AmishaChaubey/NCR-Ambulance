@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState ,useEffect} from "react";
+import { Link } from "react-router-dom";
 
 export default function ServiceLayout({ service }) {
   // Demo data for preview
@@ -34,6 +35,10 @@ export default function ServiceLayout({ service }) {
 
   const data = service || demoService;
   const [selectedImage, setSelectedImage] = useState(null);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <div className="min-h-screen bg-white">
@@ -175,29 +180,33 @@ export default function ServiceLayout({ service }) {
 
         {/* Contact Section */}
         {data.contact && (
-          <section className="mt-12 sm:mt-16 md:mt-20">
-            <div className="bg-gradient-to-r from-[#0f3b66] to-[#1a5490] rounded-xl sm:rounded-2xl p-6 sm:p-8 md:p-12 lg:p-16 text-center shadow-xl relative overflow-hidden">
-              <div className="absolute top-0 right-0 w-32 h-32 sm:w-48 sm:h-48 md:w-64 md:h-64 bg-white/10 rounded-full -mr-16 sm:-mr-24 md:-mr-32 -mt-16 sm:-mt-24 md:-mt-32"></div>
-              <div className="absolute bottom-0 left-0 w-24 h-24 sm:w-36 sm:h-36 md:w-48 md:h-48 bg-white/10 rounded-full -ml-12 sm:-ml-18 md:-ml-24 -mb-12 sm:-mb-18 md:-mb-24"></div>
-              
-              <div className="relative z-10">
-                <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-4 sm:mb-6 font-serif">
-                  Ready to Get Started?
-                </h2>
-                <p className="text-lg sm:text-xl text-white/90 mb-6 sm:mb-8 max-w-2xl mx-auto">
-                  Get in touch with us today and let us help you with your needs.
-                </p>
-                <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 mb-6 sm:mb-8">
-                  <div className="bg-white/20 backdrop-blur-sm rounded-lg px-4 sm:px-6 py-2 sm:py-3 w-full sm:w-auto">
-                    <p className="text-white font-medium text-sm sm:text-base md:text-lg">{data.contact}</p>
-                  </div>
-                </div>
-                <button className="bg-white text-[#0f3b66] px-6 sm:px-8 py-3 sm:py-4 rounded-lg font-bold hover:bg-gray-100 transition-colors shadow-lg transform hover:scale-105 transition-transform text-sm sm:text-base">
-                  Contact Us Now
-                </button>
-              </div>
-            </div>
-          </section>
+       <section className="mt-12 sm:mt-16 md:mt-20">
+  <div className="bg-gradient-to-r from-[#0f3b66] to-[#1a5490] rounded-xl sm:rounded-2xl p-6 sm:p-8 md:p-12 lg:p-16 text-center shadow-xl relative overflow-hidden">
+    <div className="absolute top-0 right-0 w-32 h-32 sm:w-48 sm:h-48 md:w-64 md:h-64 bg-white/10 rounded-full -mr-16 sm:-mr-24 md:-mr-32 -mt-16 sm:-mt-24 md:-mt-32"></div>
+    <div className="absolute bottom-0 left-0 w-24 h-24 sm:w-36 sm:h-36 md:w-48 md:h-48 bg-white/10 rounded-full -ml-12 sm:-ml-18 md:-ml-24 -mb-12 sm:-mb-18 md:-mb-24"></div>
+    
+    <div className="relative z-10">
+      <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-4 sm:mb-6 font-serif">
+        Ready to Get Started?
+      </h2>
+      <p className="text-lg sm:text-xl text-white/90 mb-6 sm:mb-8 max-w-2xl mx-auto">
+        Get in touch with us today and let us help you with your needs.
+      </p>
+
+      {/* Flex container for both button and contact info */}
+      <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 mb-6 sm:mb-8">
+        <div className="bg-white/20 backdrop-blur-sm rounded-lg px-4 sm:px-6 py-2 sm:py-3 w-full sm:w-auto text-center">
+          <p className="text-white font-medium text-sm sm:text-base md:text-lg">{data.contact}</p>
+        </div>
+
+       <Link to='/contact'><button className="bg-white text-[#0f3b66] px-6 sm:px-8 py-3 sm:py-4 rounded-lg font-bold hover:bg-gray-100 shadow-lg transform hover:scale-105 text-sm sm:text-base w-full sm:w-auto">
+          Contact Us Now
+        </button></Link> 
+      </div>
+    </div>
+  </div>
+</section>
+
         )}
       </div>
 
